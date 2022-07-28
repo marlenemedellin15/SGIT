@@ -1,5 +1,6 @@
 <?php
 
+use App\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('categories', 'CategoryController')->names('categories');
+Route::resource('clients', 'ClientController')->names('clients');
+Route::resource('products', 'ProductController')->names('products');
+Route::resource('providers', 'ProviderController')->names('providers');
+Route::resource('purchases', 'PurchaseController')->names('purchases');
+Route::resource('sales', 'SaleController')->names('sales');
+
