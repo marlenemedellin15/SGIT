@@ -7,6 +7,7 @@
         padding: 0;
         background: none;
     }
+
 </style>
 @endsection
 @section('create')
