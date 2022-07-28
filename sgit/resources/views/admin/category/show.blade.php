@@ -7,6 +7,7 @@
         padding: 0;
         background: none;
     }
+
 </style>
 @endsection
 @section('create')
@@ -47,7 +48,6 @@
                                 <a href="{{route('products.create')}}" class="dropdown-item">Agregar</a>
                             </div>
                         </div>
-                    </div>
 
                     <div class="table-responsive">
                         <table id="order-listing" class="table">
@@ -97,6 +97,7 @@
             </div>
         </div>
     </div>
+
 </div>
 @endsection
 @section('scripts')

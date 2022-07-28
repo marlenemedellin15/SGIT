@@ -81,6 +81,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 @section('scripts')
 {!! Html::script('src/js/data-table.js') !!}
