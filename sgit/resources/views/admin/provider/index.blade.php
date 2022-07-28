@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Productos de categoría')
+@section('title','Gestión de proveedores')
 @section('styles')
 <style type="text/css">
     .unstyled-button {
@@ -8,73 +8,61 @@
         background: none;
     }
 </style>
-@endsection
-@section('create')
 
 @endsection
 @section('options')
-
 @endsection
 @section('preference')
-
 @endsection
 @section('content')
 <div class="content-wrapper">
     <div class="page-header">
         <h3 class="page-title">
-            Productos que pertenecen a {{$category->name}}
+            Proveedores
         </h3>
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Panel administrador</a></li>
-                <li class="breadcrumb-item"><a href="{{route('categories.index')}}">Categorías</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{$category->name}}</li>
+                <li class="breadcrumb-item active" aria-current="page">Proveedores</li>
             </ol>
         </nav>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
 
                     <div class="d-flex justify-content-between">
-                        <h4 class="card-title">Productos de la categoría {{$category->name}}</h4>
+                        <h4 class="card-title">Proveedores</h4>
                         <div class="btn-group">
-                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="{{route('products.create')}}" class="dropdown-item">Agregar</a>
-                            </div>
+                            <a class="btn btn-light" href="{{route('providers.create')}}">Agregar</a>
                         </div>
                     </div>
-
+                    <br>
                     <div class="table-responsive">
                         <table id="order-listing" class="table">
                             <thead>
                                 <tr>
                                     <th>Id</th>
                                     <th>Nombre</th>
-                                    <th>Stock</th>
-                                    <th>Estado</th>
-                                    <th>Categoría</th>
+                                    <th>Correo electrónico</th>
+                                    <th>Teléfono/Celular</th>
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($category->products as $product)
+                                @foreach ($providers as $provider)
                                 <tr>
-                                    <th scope="row">{{$product->id}}</th>
+                                    <th scope="row">{{$provider->id}}</th>
                                     <td>
-                                        <a href="{{route('products.show',$product)}}">{{$product->name}}</a>
+                                        <a href="{{route('providers.show',$provider)}}">{{$provider->name}}</a>
                                     </td>
-                                    <td>{{$product->stock}}</td>
-
-                                    <td>{{$product->category->name}}</td>
+                                    <td>{{$provider->email}}</td>
+                                    <td>{{$provider->phone}}</td>
                                     <td style="width: 50px;">
-                                        {!! Form::open(['route'=>['products.destroy',$product], 'method'=>'DELETE']) !!}
+                                        {!! Form::open(['route'=>['providers.destroy',$provider], 'method'=>'DELETE']) !!}
 
-                                        <a class="jsgrid-button jsgrid-edit-button" href="{{route('products.edit', $product)}}" title="Editar">
+                                        <a class="jsgrid-button jsgrid-edit-button" href="{{route('providers.edit', $provider)}}" title="Editar">
                                             <i class="far fa-edit"></i>
                                         </a>
 
@@ -89,10 +77,6 @@
                             </tbody>
                         </table>
                     </div>
-
-                </div>
-                <div class="card-footer text-muted">
-                    <a href="{{route('categories.index')}}" class="btn btn-primary float-right">Regresar</a>
                 </div>
             </div>
         </div>
@@ -100,6 +84,5 @@
 </div>
 @endsection
 @section('scripts')
-{!! Html::script('src/js/profile-demo.js') !!}
 {!! Html::script('src/js/data-table.js') !!}
 @endsection

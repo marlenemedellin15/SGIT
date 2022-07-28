@@ -41,7 +41,24 @@ class ProductController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        Product::create($request->all());
+        $image_name = null;
+        if($request->hasFile('picture')){
+            $file = $request->file('picture');
+            $image_name = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path("/image"), $image_name);
+        }
+
+        if($request->hasFile('picture')){
+            $file = $request->file('picture');
+            $image_name = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path("/image"),$image_name);
+        }
+        $product = Product::create($request->all()+[
+            'image'=>$image_name,
+        ]);
+
+        $product->update(['code'=>$product->id]);
+
         return redirect()->route('products.index');
     }
 
@@ -66,7 +83,7 @@ class ProductController extends Controller
     {
         $categories = Category::get();
         $providers = Provider::get();
-        return view('admin.product.show', compact('product', 'categories', 'providers'));
+        return view('admin.product.edit', compact('product', 'categories', 'providers'));
     }
 
     /**
@@ -78,7 +95,15 @@ class ProductController extends Controller
      */
     public function update(UpdateRequest $request, Product $product)
     {
-        $product->update($request->all());
+        $image_name = $request->input('picture');
+        if($request->hasFile('picture')){
+            $file = $request->file('picture');
+            $image_name = time().'_'.$file->getClientOriginalName();
+            $file->move(public_path("/image"),$image_name);
+            $product->update($request->all()+[
+                'image'=>$image_name,
+            ]);
+        }
         return redirect()->route('products.index');
     }
 
@@ -93,4 +118,47 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('products.index');
     }
+
+    /**
+     * Cambiar el estatus de los productos
+     
+    public function change_status(Product $product)
+    {
+        if ($product->status == 'ACTIVE') {
+            $product->update(['status'=>'DEACTIVATED']);
+            return redirect()->back();
+        } else {
+            $product->update(['status'=>'ACTIVE']);
+            return redirect()->back();
+        } 
+    }
+    */
+
+    /**
+     * Obtener los productos según su ID y el código de barras
+
+    public function get_products_by_barcode(Request $request){
+        if ($request->ajax()) {
+            $products = Product::where('code', $request->code)->firstOrFail();
+            return response()->json($products);
+        }
+    }
+    public function get_products_by_id(Request $request){
+        if ($request->ajax()) {
+            $products = Product::findOrFail($request->product_id);
+            return response()->json($products);
+        }
+    }
+    */
+
+    /**
+     * Imprimir el código de barras
+     * 
+    public function print_barcode()
+    {
+        $products = Product::get();
+        $pdf = PDF::loadView('admin.product.barcode', compact('products'));
+        return $pdf->download('codigos_de_barras.pdf');
+    }
+    */
 }

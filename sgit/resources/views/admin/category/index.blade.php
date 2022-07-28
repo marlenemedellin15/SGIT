@@ -77,12 +77,9 @@
                         </table>
                     </div>
                 </div>
-                {{-- <div class="card-footer text-muted">
-                    {{$categories->render()}}
-            </div> --}}
+            </div>
         </div>
     </div>
-</div>
 </div>
 @endsection
 @section('scripts')

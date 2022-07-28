@@ -47,7 +47,7 @@ class ProviderController extends Controller
      * @param  \App\Models\Provider  $Provider
      * @return \Illuminate\Http\Response
      */
-    public function show(Provider $Provider)
+    public function show(Provider $provider)
     {
         return view('admin.provider.show', compact('provider'));
     }

@@ -47,7 +47,7 @@ class StoreRequest extends FormRequest
 
             'rfc_number.required'=>'¡Este campo es requerido!',
             'rfc_number.string'=>'¡Este no es un valor correcto',
-            'rfc_number.max'=>'¡Solo se permiten 200 caracteres!',
+            'rfc_number.max'=>'¡Solo se permiten 11 caracteres!',
             'rfc_number.min'=>'¡Se requiere al menos 11 caracteres!',
             'rfc_number.unique'=>'¡Ya se encuentra registrado!',
 

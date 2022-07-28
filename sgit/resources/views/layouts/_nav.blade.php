@@ -21,5 +21,17 @@
         <span class="menu-title">Categorías</span>
       </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{route('products.index')}}">
+        <i class="fas fa-boxes menu-icon"></i>
+        <span class="menu-title">Productos</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{{route('providers.index')}}">
+        <i class="fas fa-shipping-fast menu-icon"></i>
+        <span class="menu-title">Proveedores</span>
+      </a>
+    </li>
   </ul>
 </nav>
