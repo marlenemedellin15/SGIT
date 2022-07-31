@@ -24,50 +24,41 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|string|max:255',
-            'dni'=>'required|string|unique:clients,dni,'.
-            $this->route('client')->id.'|min:8|max:8',
-            'rfc'=>'nullable|string|unique:clients,rfc,'.
-            $this->route('client')->id.'|min:11|max:11',
-            'address'=>'nullable|string|max:255',
-            'phone'=>'nullable|string|unique:clients,phone'.
-            $this->route('client')->id.'|min:10|max:10',
-            'email'=>'nullable|string|unique:clients,email'.
-            $this->route('client')->id.'|max:255',
+            'name'=>'required|string|max:50',
+
+            //'rfc_number'=>'nullable|string|min:12|unique:clients,rfc_number,'. $this->route('client')->id.'|max:12',
+
+            'address'=>'nullable|string|max:120',
+
+            'phone'=>'nullable|string|min:10|max:10|unique:clients,phone,'. $this->route('client')->id.'|max:10',
+            'email'=>'nullable|string|email:rfc,dns|unique:clients,email,'. $this->route('client')->id.'|max:50',
         ];
     }
     public function messages()
     {
         return[
             
-            'name.required'=>'¡Este campo es requerido!',
-            'name.string'=>'¡El valor no es correcto!',
-            'name.max'=>'¡Solo se permiten 255 caracteres!',
+            'name.required'=>'¡Estel nombre es requerido!',
+            'name.max'=>'¡El nombre tiene un máximo de 50 caracteres!',
 
-            'dni.string'=>'¡El valor no es correcto!',
-            'dni.required'=>'¡Este campo es requerido!',
-            'dni.unique'=>'¡El numero de DNI ya se encuentra registrado!',
-            'dni.min'=>'¡Se requiere de 8 caracteres!',
-            'dni.max'=>'¡Solo se permiten 8 caracteres!',
+            //'rfc_number.required'=>'¡El RFC es requerido!',
+            //'rfc_number.string'=>'¡Los datos del RFC no son correctos! Ingresa valores validos',
+            //'rfc_number.max'=>'¡El RFC tiene un máximo de 12 caracteres!',
+            //'rfc_number.min'=>'¡El RFC tiene un mínimo de 12 caracteres!',
+            //'rfc_number.unique'=>'¡Este RFC ya se encuentra registrado!',
 
-            'rfc.string'=>'¡El valor no es correcto!',
-            'rfc.unique'=>'¡Este RFC ya se encuentra registrado!',
-            'rfc.min'=>'¡Se requiere de 11 caracteres!',
-            'rfc.max'=>'¡Solo se permiten 11 caracteres!',
-
-            'address.string'=>'¡El valor no es correcto!',
-            'address.max'=>'¡Solo se permiten 255 caracteres!',
+            'address.max'=>'¡La dirección tiene un máximo de 120 caracteres!',
+            'address.string'=>'¡Los datos de la dirección no son correctos! Ingresa valores validos',
 
             'phone.string'=>'¡Este valor no es un correcto!',
-            'phone.required'=>'¡Este campo es requerido!',
-            'phone.unique'=>'¡Este numero ya se encuentra registrado!',
-            'phone.min'=>'¡Se requiere al menos de 10 caracteres!',
-            'phone.max'=>'¡Solo se permiten 10 caracteres!',
+            'phone.max'=>'¡El número de contacto tiene un máximo de 10 caracteres!',
+            'phone.min'=>'¡El número de contacto tiene un mínimo de 10 caracteres!',
+            'phone.unique'=>'¡Este número de contacto ya se encuentra registrado!',
 
-            'email.string'=>'¡Este valor no es un correcto!',
+            'email.email'=>'¡Este no es un correo electrónico!',
+            'email.string'=>'¡Los datos del correo electrónico no son correctos! Ingresa valores validos',
+            'email.max'=>'¡El correo electrónico tiene un máximo de 50 caracteres!',
             'email.unique'=>'¡Este correo electrónico ya se encuentra registrado!',
-            'email.max'=>'¡Solo se permiten 255 caracteres!',
-            'email.email'=>'Esto no es un correo electrónico',
         ];   
     }    
 }

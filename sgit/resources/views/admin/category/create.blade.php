@@ -41,6 +41,7 @@
                     <div class="form-group">
                         <label for="description">Descripción</label>
                         <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="3" value="{{ old ('description') }}"></textarea>
+                        <small id="helpId" class="form-text text-muted">Este campo es opcional.</small>
                         @error('description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{$message}}</strong>

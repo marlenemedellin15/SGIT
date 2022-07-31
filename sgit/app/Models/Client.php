@@ -9,10 +9,12 @@ class Client extends Model
 {
     protected $fillable = [
         'name',
-        'dni',
-        'rfc',
+            //'rfc',
         'address',
         'phone',
         'email',
     ];
+    public function sales(){
+        return $this->hasMany(Sale::class);
+    }
 }
