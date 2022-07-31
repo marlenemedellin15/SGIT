@@ -24,20 +24,20 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|string|max:50',
-            'description'=>'nullable|string|max:255'
+            'name'=>'required|unique:categories|string|max:30',
+            'description'=>'nullable|string|max:120'
         ];
     }
     public function messages()
     {
         return[
-            'name.required'=>'¡Este campo es requerido!',
-            'name.string'=>'¡El valor no es correcto!',
-            'name.max'=>'¡Solo se permiten 20 caracteres!',
+            'name.required'=>'¡Se requiere un nombre de categoría!',
+            'name.string'=>'¡Los datos del nombre de categoría no son correctos! Ingresa valores validos',
+            'name.max'=>'¡El nombre de la categoría es de 30 caracteres máximo!',
+            'name.unique'=>'¡Esta categoría ya se encuentra registrada!',
             
-            'description.required'=>'¡Este campo es requerido!',
-            'description.string'=>'¡El valor no es correcto!',
-            'description.max'=>'¡Solo se permiten 255 caracteres!'
+            'description.string'=>'¡La descripción no es correctos! Ingresa valores validos',
+            'description.max'=>'¡La descripción es de 120 caracteres máximo!',
         ];
     }
 }

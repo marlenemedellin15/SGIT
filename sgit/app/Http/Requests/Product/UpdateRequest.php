@@ -24,9 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|string|unique:products,name,'.
-            $this->route('product')->id.'|max:255',
-            'image'=>'nullable|dimensions:min_width=100,min_height=200',
+            'name'=>'required|string|unique:products,name,'. $this->route('product')->id.'|max:30',
             'sell_price'=>'required',
             'category_id'=>'required|integer|exists:App\Models\Category,id',
             'provider_id'=>'required|integer|exists:App\Models\Provider,id',
@@ -36,23 +34,17 @@ class UpdateRequest extends FormRequest
     public function messages()
     {
         return[
-            
-            'name.required'=>'¡Este campo es requerido!',
-            'name.string'=>'¡El valor no es correcto!',
-            'name.max'=>'¡Solo se permiten 255 caracteres!',
+            'name.required'=>'¡El nombre del producto es requerido!',
+            'name.string'=>'¡Los datos del nombre no son correctos! Ingresa valores validos',
+            'name.max'=>'¡El nombre tiene un máximo de 30 caracteres!',
             'name.unique'=>'¡Este producto ya se encuentra registrado!',
-    
-            // 'image.required'=>'¡Este campo es requerido!',
-            'image.dimensions'=>'Solo se permiten imagenes de 100x200 px.',
 
-            'sell_price.required'=>'¡El campo es requerido!',
+            'sell_price.required'=>'¡El precio del producto es requerido!',
     
-            'category_id.required'=>'¡Este campo es requerido!',
-            'category_id.interger'=>'¡El valor tiene que ser entero!',
+            'category_id.required'=>'¡La cateoría del producto es requerida!',
             'category_id.exists'=>'¡La categoria no existe!',
 
-            'provider_id.required'=>'¡Este campo es requerido!',
-            'provider_id.interger'=>'¡El valor tiene que ser entero!',
+            'provider_id.required'=>'¡El nombre del proveedor del producto es requerido!',
             'provider_id.exists'=>'¡El proveedor no existe!',
         ];   
     }    

@@ -58,9 +58,9 @@ class ProviderController extends Controller
      * @param  \App\Models\Provider  $Provider
      * @return \Illuminate\Http\Response
      */
-    public function edit(Provider $Provider)
+    public function edit(Provider $provider)
     {
-        return view('admin.provider.show', compact('provider'));
+        return view('admin.provider.edit', compact('provider'));
     }
 
     /**
@@ -82,9 +82,9 @@ class ProviderController extends Controller
      * @param  \App\Models\Provider  $Provider
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Provider $Provider)
+    public function destroy(Provider $provider)
     {
-        $Provider->delete();
+        $provider->delete();
         return redirect()->route('providers.index');
     }
 }

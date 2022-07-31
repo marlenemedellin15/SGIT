@@ -33,27 +33,52 @@
 
                     <div class="form-group">
                         <label for="name">Nombre</label>
-                        <input type="text" class="form-control" name="name" id="name" value="{{$provider->name}}" aria-describedby="helpId" required>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{$provider->name}}" aria-describedby="helpId" required>
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="email">Correo electrónico</label>
-                        <input type="email" class="form-control" name="email" id="email" value="{{$provider->email}}" aria-describedby="emailHelpId" placeholder="ejemplo@gmail.com" required>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" value="{{$provider->email}}" aria-describedby="emailHelpId" required>
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="ruc_number">RFC</label>
-                        <input type="number" class="form-control" name="rfc_number" id="rfc_number" value="{{$provider->rfc_number}}" aria-describedby="helpId" required>
+                        <label for="rfc_number">RFC</label>
+                        <input type="text" class="form-control @error('rfc_number') is-invalid @enderror" name="rfc_number" id="rfc_number" value="{{$provider->rfc_number}}" aria-describedby="helpId" required>
+                        @error('rfc_number')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="address">Dirección</label>
-                        <input type="text" class="form-control" name="address" id="address" value="{{$provider->address}}" aria-describedby="helpId" required>
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" id="address" value="{{$provider->address}}" aria-describedby="helpId" required>
+                        @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Numero de contacto</label>
-                        <input type="number" class="form-control" name="phone" id="phone" value="{{$provider->phone}}" aria-describedby="helpId" required>
+                        <input type="number" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" value="{{$provider->phone}}" aria-describedby="helpId" required>
+                        @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{$message}}</strong>
+                            </span>
+                        @enderror
                     </div>
 
                     <button type="submit" class="btn btn-primary mr-2">Actualizar</button>

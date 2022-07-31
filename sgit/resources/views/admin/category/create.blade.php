@@ -24,17 +24,34 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    
+
                     <div class="d-flex justify-content-between">
                         <h4 class="card-title">Registro de categorías</h4>
                     </div>
                     {!! Form::open(['route'=>'categories.store', 'method'=>'POST']) !!}
-                    @include('admin.category._form')
-                     <button type="submit" class="btn btn-primary mr-2">Registrar</button>
-                     <a href="{{route('categories.index')}}" class="btn btn-light">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nombre" value="{{ old ('name') }}" required>
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descripción</label>
+                        <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="3" value="{{ old ('description') }}"></textarea>
+                        @error('description')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{$message}}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Registrar</button>
+                    <a href="{{route('categories.index')}}" class="btn btn-light">
                         Cancelar
-                     </a>
-                     {!! Form::close() !!}
+                    </a>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
