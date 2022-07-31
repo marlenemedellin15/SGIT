@@ -39,7 +39,6 @@
                         </div>
                     </div>
                     <br>
-
                     <div class="table-responsive">
                         <table id="order-listing" class="table">
                             <thead>
